@@ -4,7 +4,7 @@ using PokemonReviewApp.Models;
 
 namespace PokemonReviewApp.Repository
 {
-    public class CategoryRepository : ICategory
+    public class CategoryRepository : ICategoryRepository
     {
         private DataContext _context;
 
@@ -13,7 +13,7 @@ namespace PokemonReviewApp.Repository
             _context = context;
         }
 
-        public bool CategoriesExists(int Id)
+        public bool CategoryExists(int Id)
         {
             return _context.Categories.Any(c => c.Id == Id);
         }
