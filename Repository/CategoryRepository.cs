@@ -1,0 +1,36 @@
+﻿using PokemonReviewApp.Data;
+using PokemonReviewApp.interfaces;
+using PokemonReviewApp.Models;
+
+namespace PokemonReviewApp.Repository
+{
+    public class CategoryRepository : ICategory
+    {
+        private DataContext _context;
+
+        public CategoryRepository(DataContext context)
+        {
+            _context = context;
+        }
+
+        public bool CategoriesExists(int Id)
+        {
+            return _context.Categories.Any(c => c.Id == Id);
+        }
+
+        public ICollection<Category> GetCategories()
+        {
+            return _context.Categories.ToList();
+        }
+
+        public Category GetCategory(int id)
+        {
+            return _context.Categories.Where(i => i.Id == id).FirstOrDefault(); 
+        }
+
+        public ICollection<Pokemon> GetPokemonByCategory(int categoryId)
+        {
+            return _context.PokemonCategories.Where(e => e.CategoryId == categoryId).Select(c => c.Pokemon).ToList();
+        }
+    }
+}
