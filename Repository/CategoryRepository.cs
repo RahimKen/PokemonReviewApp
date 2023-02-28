@@ -25,7 +25,7 @@ namespace PokemonReviewApp.Repository
 
         public Category GetCategory(int id)
         {
-            return _context.Categories.Where(i => i.Id == id).FirstOrDefault(); 
+            return _context.Categories.Where(e => e.Id == id).FirstOrDefault();
         }
 
         public ICollection<Pokemon> GetPokemonByCategory(int categoryId)
