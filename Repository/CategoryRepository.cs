@@ -1,4 +1,5 @@
-﻿using PokemonReviewApp.Data;
+﻿using Microsoft.EntityFrameworkCore.Diagnostics;
+using PokemonReviewApp.Data;
 using PokemonReviewApp.interfaces;
 using PokemonReviewApp.Models;
 
@@ -16,6 +17,18 @@ namespace PokemonReviewApp.Repository
         public bool CategoryExists(int Id)
         {
             return _context.Categories.Any(c => c.Id == Id);
+        }
+
+        public bool CreateCategory(Category category)
+        {
+            _context.Add(category);
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
         }
 
         public ICollection<Category> GetCategories()
