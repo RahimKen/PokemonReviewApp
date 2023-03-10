@@ -79,7 +79,7 @@ namespace PokemonReviewApp.Controllers
                 ModelState.AddModelError("", "Categorie Already Exists");
                 return StatusCode(422, ModelState);
             }
-            if(ModelState.IsValid)
+            if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
