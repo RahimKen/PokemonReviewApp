@@ -51,6 +51,18 @@ namespace PokemonReviewApp.Repository
             return saved > 0 ? true : false;
         }
 
+        public bool DeleteReviewer(Reviewer reviewer)
+        {
+            _context.Remove(reviewer);
+            return Save();
+        }
+
+        public bool UpdateReviewer(Reviewer reviewer)
+        {
+            _context.Update(reviewer);
+            return Save();
+        }
+
 
 
     }
